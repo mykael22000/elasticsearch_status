@@ -2,7 +2,8 @@ export default function (server) {
 
   // We can use this method, since we have set the require in the index.js to
   // elasticsearch. So we can access the elasticsearch plugins safely here.
-  let call = server.plugins.elasticsearch.callWithRequest;
+  const { callWithRequest } = server.plugins.elasticsearch.getCluster('data');
+  let call = callWithRequest;
 
   // Register a GET API at /api/elasticsearch_status/indices that returns
   // an array of all indices in the elasticsearch. The server is actually an
